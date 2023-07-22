@@ -1,0 +1,38 @@
+@media screen and (max-width: 700px) {
+    body {
+        font-size: 14px;
+        margin: 10px;
+    }
+
+    h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    }
+
+    label {
+    font-size: 16px;
+    }
+
+    input {
+        font-size: 16px;
+        padding: 5px;
+        }
+
+
+    #result {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+}
+b{
+  font-weight: bold;
+}	
+.protoNormal,.protoBrachy,.protoMedeto,.protoAntibio,
+.protoMorph,.protoPremedi,.protoInduc,.protoAntiinf,.protoAntivom,.protoDivers
+{
+    font-size: 10px;
+    background-color: skyblue;
+    border-radius: 30% 70% 70% 30% / 30% 58% 42% 70%;
+    padding: 30px;
+    
+}
