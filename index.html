@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vitmadosoption</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style_1.css" />
+
+</head>
+<body>
+	<h1>Dosage médicament</h1>
+
+	<label for="weight">Poids de l'animal (en kg) :</label>
+	<input type="number" id="weight" name="weight" min="0" step="0.1"><br><br>
+
+	<p>Choisir le médicament :</p>
+	<button class="protoNormal" id="protocolA" onclick="calculateDose('normal')">Protocole Normal</button>
+	<button class="protoBrachy" id="protocolB" onclick="calculateDose('brachy')">Protocole Brachy</button>
+	<button class="protoMedeto"id="protocolC" onclick="calculateDose('medeto')">Protocole Médeto</button>
+	<br>
+    <br>
+	<button class="protoAntibio" id="protocolD" onclick="calculateDose('antibio')">Les Antibiotiques</button>
+	<button class="protoMorph" id="protocolE" onclick="calculateDose('morph')">Les Morphiniques</button>
+	<button class="protoPremedi" id="protocolF" onclick="calculateDose('premedi')">Prémedications</button>
+    <br>
+    <br>
+    <button class="protoInduc" id="protocolG" onclick="calculateDose('induc')">Inductions</button>
+	<button class="protoAntiinf" id="protocolH" onclick="calculateDose('antiinf')">Anti-Inflammatoires</button>
+	<button class="protoAntivom" id="protocolI" onclick="calculateDose('antivom')">Anti-Vomitifs</button>
+	<br>
+    <br>
+	<button class="protoDivers" id="protocolJ" onclick="calculateDose('divers')">Divers</button>
+
+	<br><br>
+	<div id="result"></div>
+    
+
+	<script>
+		function formula(weight,medication){
+			return (weight / 10 * medication).toFixed(2);
+		}
+
+		function displayResult(protocolName, medications,values) {
+  			result.innerHTML = "Résultat " + protocolName + " :<br><br>";
+  
+  			for (let i = 0; i < medications.length; i++) {
+    			result.innerHTML += medications[i] + ': ' +'<b>'+ values[i]+' ml<br>'+'</b>';
+  			}
+		}
+
+		function calculateDose(protocol) {
+			const weight = document.getElementById("weight").value;
+			const result = document.getElementById("result");
+
+			if (protocol === "normal") {
+				const propofol = formula(weight,6);
+				const valium = formula(weight,0.5);
+				const morphine = formula (weight,0.2);
+				const unacim = formula(weight,1);
+
+				const medications = ["Propofol", "Valium", "Morphine", "Unacim"];
+				const values = [propofol,valium,morphine,unacim];
+
+				displayResult('Normal',medications,values);
+
+			}
+			else if (protocol === "brachy") {
+				const propofol = formula(weight,6);
+				const valium = formula(weight,0.5);
+				const morphine = formula(weight,0.2);
+				const pantoprazole = formula(weight,4);
+				const emeprid = formula(weight,1);
+				const cerenia = formula(weight,1);
+				const unacim = formula(weight,1);
+
+				const medications = ["Propofol","Valium", "Morphine", "Pantoprazole", "Emeprid","Cerenia","Unacim"];
+				const values = [propofol,valium,morphine,pantoprazole,emeprid,cerenia,unacim];
+
+				displayResult('Brachy',medications,values);				
+
+			}
+			else if (protocol === "medeto") {
+				const medeto03 = formula(weight,0.03);
+				const medeto05 = formula(weight,0.05);
+				const medeto01 = formula(weight,0.1); 
+				const propofol = formula(weight,4); 
+				const valium = formula(weight,0.5); 
+				const morphine = formula(weight,0.2); 
+				const unacim = formula(weight,1);
+				
+				const medications = ['Medeto 0.03/10kg','Medeto 0.05/10kg','Medeto 0.01/10kg', 'Propofol', 'Valium', 'Morphine','Unacim'];
+				const values = [medeto03,medeto05,medeto01,propofol,valium,morphine,unacim];
+
+				displayResult('Medeto',medications,values);	
+
+			}
+			else if (protocol === "antibio") {
+				const excenel = formula(weight,0.4);
+				const marbocyl2 = formula(weight,2);
+				const marbocyl5 = formula(weight,5);
+				const amoxicilline = formula(weight,2);
+				const unacim = formula(weight,1);
+				const levmentin = formula(weight,4);
+				
+				const medications = ['Excenel','Marbocyl 2 ml/10kg','Marbocyl 5 ml/10kg', 'Amoxicilline', 'Unacim', 'Levmentin'];
+				const values = [excenel,marbocyl2,marbocyl5,amoxicilline,unacim,levmentin];
+
+				displayResult('Anti-biotiques',medications,values);
+
+			}
+			else if (protocol === "morph") {
+				const morphine = formula(weight,0.2);
+				const methadone = formula(weight,0.5);
+				const buprenorphine03 = formula(weight,0.3);
+				const buprenorphine045 = formula(weight,0.45);
+				const buprenorphine06 = formula(weight,0.6);
+				const butorphanol = formula(weight,0.3);
+
+				const medications = ['Morphine','Méthadone','Buprénorphine 0.3 ml/10kg','Buprénorphine 0.45 ml/10kg','Buprénorphine 0.6 ml/10kg', 'Butorphanol'];
+				const values = [morphine,methadone,buprenorphine03,buprenorphine045,buprenorphine06,butorphanol];
+
+				displayResult('Morphiniques',medications,values);
+
+			}
+			else if (protocol === "premedi") {
+				const sedatorgd = formula(weight,0.03); 
+				const sedatorchi = formula(weight,0.05);
+				const sedator = formula(weight,0.1);
+				const acp045 = formula(weight,0.03);
+				const valium05 = formula(weight,0.5);
+				const valium1 = formula(weight,1);
+				const valium2 = formula(weight,2);
+				const atipam = formula(weight,0.05);
+
+				const medications = ['Sedator Gd CN','Sedator Chir','Sedator','ACP 0.45 ml','Valium 0.5 ml / 10 kg ','Valium 1 ml / 10 kg','Valium 2 ml / 10 kg','Atipam'];
+				const values = [sedatorgd,sedatorchi,sedator,acp045,valium05,valium1,valium2,atipam];
+
+				displayResult('PREMEDICATION',medications,values);
+
+			}
+			else if (protocol === "induc") {
+				const propofol = formula(weight,4)
+				const propofolacp = formula(weight,6)
+				const ketamine = formula(weight,0.5)
+				const alfaxaloneT = formula(weight,2)
+				const alfaxaloneI = formula(weight,4)
+
+				const medications = ['Propofol','Propofol sans ACP','Kétamine','Alfaxalone tranquilisation','Alfaxalone induction'];
+				const values = [propofol,propofolacp,ketamine,alfaxaloneT,alfaxaloneI];
+
+				displayResult('Inductions',medications,values);
+
+			}
+			else if (protocol === "antiinf") {
+				const dexamethasone = formula(weight,0.5)
+				const meloxicamIV = formula(weight,0.2)
+				const meloxicamSC = formula(weight,0.1)
+
+
+				const medications = ['Déxaméthasone','Meloxicam iv et sc chien','Meloxicam sc chat'];
+				const values = [dexamethasone,meloxicamIV,meloxicamSC];
+
+				displayResult('Anti-Inflammatoires',medications,values);
+				
+			}
+			else if (protocol === "antivom") {
+				const maropitant = formula(weight,1)
+				const metoclopramid = formula(weight,1)
+
+
+				const medications = ['Maropitant','Metoclopramid'];
+				const values = [maropitant,metoclopramid];
+
+				displayResult('Anti-Vomitifs',medications,values);
+
+			}
+			else if (protocol === "divers") {
+				const exacyl = formula(weight,1);
+				const pantoprazole = formula(weight,2.5);
+				const dimazon = formula(weight,0.2);
+
+				const medications = ['Exacyl','Pantoprazole','Dimazon'];
+				const values = [exacyl,pantoprazole,dimazon];
+
+				displayResult('Divers',medications,values);
+			}
+		}
+	</script>
+</body>
+</html>
